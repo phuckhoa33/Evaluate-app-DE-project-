@@ -1,17 +1,17 @@
-import requests
-from bs4 import BeautifulSoup
+
+import wikipedia
 
 
-def scraping(url: str):
-    response = requests.get(url)
-    page_content = response.content
-    soup = BeautifulSoup(page_content, 'html.parser')
-    table = soup.find('div', attrs={'class': 'vector-header-container'})
-    print(table)
+def scraping(entity: str):
+    entity_summary = wikipedia.summary(entity)
+    print(entity_summary)
 
 
 def main():
-    scraping('https://en.wikipedia.org/wiki/Epsom_riot')
+    try:
+        scraping("Bosch afafafa")
+    except wikipedia.exceptions.PageError as e:
+        print(e)
 
 
 if __name__ == "__main__":

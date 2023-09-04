@@ -2,3 +2,5 @@ configparser==6.0.0
 pandas==2.0.3
 beautifulsoup4==4.12.2
 requests==2.31.0
+wikipedia==1.4.0
+selenium==4.11.2
