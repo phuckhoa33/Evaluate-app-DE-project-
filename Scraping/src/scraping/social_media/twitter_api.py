@@ -5,24 +5,46 @@ import pandas as pd
 # read configs
 config = configparser.ConfigParser()
 config.read('/home/phuckhoa/Documents/evaluate_application/Scraping/config.ini')
-api_key = config['twitter']['api_key']
-api_key_secret = config['twitter']['api_key_secret']
+consumer_key = config['twitter']['api_key']
+consumer_secret = config['twitter']['api_key_secret']
 
-access_token = config['twitter']['access_token']
-access_token_secret = config['twitter']['access_token_secret']
-
-# authentication
-auth = tweepy.OAuthHandler(api_key, api_key_secret)
-auth.set_access_token(access_token, access_token_secret)
-
-api = tweepy.API(auth)
-
-search_query = 'Python programming'
+access_key = config['twitter']['access_token']
+access_secret = config['twitter']['access_token_secret']
 
 
-# Perform the search
-search_results = api.search(q=search_query, count=10)
+def get_tweets(username):
 
-# Print search results
-for tweet in search_results:
-    print(f"{tweet.user.screen_name}: {tweet.text}\n")
+    # Authorization to consumer key and consumer secret
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+
+    # Access to user's access key and access secret
+    auth.set_access_token(access_key, access_secret)
+
+    # Calling api
+    api = tweepy.API(auth)
+
+    # 200 tweets to be extracted
+    number_of_tweets = 200
+    tweets = api.user_timeline(screen_name=username)
+
+    # Empty Array
+    tmp = []
+
+    # create array of tweet information: username,
+    # tweet id, date/time, text
+    tweets_for_csv = [tweet.text for tweet in tweets]  # CSV file created
+    for j in tweets_for_csv:
+
+        # Appending tweets to the empty array tmp
+        tmp.append(j)
+
+    # Printing the tweets
+    print(tmp)
+
+
+# Driver code
+if __name__ == '__main__':
+
+    # Here goes the twitter handle for the user
+    # whose tweets are to be extracted.
+    get_tweets("twitter-handle")
