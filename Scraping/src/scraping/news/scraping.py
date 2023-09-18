@@ -5,11 +5,11 @@ import pandas as pd
 
 def scraping(url):
     options = webdriver.ChromeOptions()
-    driver = webdriver.Chrome(executable_path=url, options=options)
+    driver = webdriver.Chrome(options=options)
     products = []  # List to store name of the product
     prices = []  # List to store price of the product
     ratings = []  # List to store rating of the product
-    driver.get('<a href="https://www.flipkart.com/laptops/">https://www.flipkart.com/laptops/</a>~buyback-guarantee-on-laptops-/pr?sid=6bo%2Cb5g&amp;amp;amp;amp;amp;amp;amp;amp;amp;uniq')
+    driver.get(url)
     content = driver.page_source
     soup = BeautifulSoup(content)
     for a in soup.findAll('a', href=True, attrs={'class': '_31qSD5'}):
