@@ -1,2 +1,3 @@
 /.vscode
-/Scraping/config.ini
+/Scraping/src/social_media/config.ini
+/evaluate
