@@ -1,3 +1,8 @@
 /.vscode
 /Scraping/src/social_media/config.ini
 /evaluate
+/Django/core/migrations
+/Django/Django/__pycache__
+/Django/core/__pycache__
+/venv
+/evaluate
